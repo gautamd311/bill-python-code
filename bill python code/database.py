@@ -33,7 +33,6 @@ def create_tables():
 def add_product(name, price, quantity, date_added):
     conn = connect()
     cur = conn.cursor()
-    # Notice we added date_added here and a 4th "?" in the VALUES
     cur.execute("INSERT INTO products(name, price, quantity, date_added) VALUES(?,?,?,?)",
                 (name, price, quantity, date_added))
     conn.commit()
@@ -50,7 +49,6 @@ def get_products():
 def update_product(pid, name, price, quantity):
     conn = connect()
     cur = conn.cursor()
-    # We do not update date_added here so it retains the original creation time
     cur.execute("UPDATE products SET name=?, price=?, quantity=? WHERE id=?",
                 (name, price, quantity, pid))
     conn.commit()
